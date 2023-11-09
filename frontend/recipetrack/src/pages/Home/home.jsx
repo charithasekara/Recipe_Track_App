@@ -1,4 +1,3 @@
-// Home.jsx
 import React, { useEffect, useState } from "react";
 import { useGetUserID } from "../../hooks/useGetUserID";
 import axios from "axios";
@@ -12,16 +11,15 @@ export const Home = () => {
   const userID = useGetUserID();
   const navigate = useNavigate();
 
-   // Redirect to the recipeDetails page with the recipeID
+  // Redirect to the recipeDetails page with the recipeID
   const redirectToRecipeDetails = (recipeId) => {
     navigate(`/recipeDetails/${recipeId}`);
   };
 
-   // Redirect to the edit page with the recipeID
-   const redirectToEditRecipe = (recipeID) => {
+  // Redirect to the edit page with the recipeID
+  const redirectToEditRecipe = (recipeID) => {
     navigate(`/editRecipe/${recipeID}`);
   };
-  
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -29,7 +27,7 @@ export const Home = () => {
         const response = await axios.get("http://localhost:3001/recipes");
         setRecipes(response.data);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     };
 
@@ -40,7 +38,7 @@ export const Home = () => {
         );
         setSavedRecipes(response.data.savedRecipes);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     };
 
@@ -56,7 +54,7 @@ export const Home = () => {
       });
       setSavedRecipes(response.data.savedRecipes);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -68,13 +66,10 @@ export const Home = () => {
         await axios.delete(`http://localhost:3001/recipes/${recipeID}`);
         window.location.reload(); // Refresh the page
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     }
   };
-  
-
-
 
   const isRecipeSaved = (id) => savedRecipes.includes(id);
 
@@ -110,22 +105,20 @@ export const Home = () => {
                 alt={recipe.name}
               />
               <div className="ingredients">
-                <p>
-                  Ingredients: {recipe.ingredients.join(", ")}
-                </p>
+                <p>Ingredients: {recipe.ingredients.join(", ")}</p>
               </div>
               <div className="description">
                 <p>{recipe.instructions}</p>
               </div>
-              <p className="recipe-time" >
-              Cooking Time: {recipe.cookingTime} minutes
-            </p>
-            <div className="buttons">
-                <button onClick={() => deleteRecipe(recipe._id)}>Delete</button>
-                <button onClick={() => redirectToEditRecipe(recipe._id)}>Edit</button>
+              <p className="recipe-time">
+                Cooking Time: {recipe.cookingTime} minutes
+              </p>
+              <div className="buttons">
+                <button className="delete-button" onClick={() => deleteRecipe(recipe._id)}>Delete</button>
+                <button className="edit-button" onClick={() => redirectToEditRecipe(recipe._id)}>Edit</button>
               </div>
               <div className="buttons">
-                <button onClick={() => redirectToRecipeDetails(recipe._id)}>Recipe Details</button>
+                <button className="recipe-details-button" onClick={() => redirectToRecipeDetails(recipe._id)}>Recipe Details</button>
               </div>
             </div>
           </li>

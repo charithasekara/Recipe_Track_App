@@ -1,39 +1,59 @@
 /* Navbar.css */
 .navbar {
-    background-color: #333;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
-  }
-  
-  .logo a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 24px;
-  }
-  
-  .links {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .links a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-  }
-  
-  .links button {
-    background-color: #ff6347; /* Red-Orange Color */
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 18px;
-    text-decoration: none;
-  }
-  
+  background-color: rgba(237, 237, 237, 0.534); /* Use rgba for the glass effect */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+  backdrop-filter: blur(10px); /* Add the glass effect with backdrop-filter */
+ 
+}
+
+.logo a {
+  color: #292929;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-size: var(--h3-font-size);
+  margin-left: 50px;
+}
+
+.links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-right: 50px;
+}
+
+.links a{
+  color: #2a2a2a;
+  text-decoration: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 8px 12px; 
+}
+.links button {
+  color: #f8f8f8;
+  text-decoration: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  padding: 8px 12px;
+  border-radius: 5px;
+  backdrop-filter: blur(10px); 
+}
+
+.links a:hover{
+  color: #5a5a5a;
+}
+.links button:hover {
+  color: #ebebeb;
+}

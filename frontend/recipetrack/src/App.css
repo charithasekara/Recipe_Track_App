@@ -1,0 +1,67 @@
+/*====google fonts===*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@400;500;600;700;800&display=swap');
+
+
+  /*css variables*/
+
+  :root{
+    /*colors*/
+    /*color mode HSL(hue, saturation, lightness) */
+    --first-color: hsl(271, 76%, 53%);
+    --title-color: hsl(0, 0%, 40%);
+    --text-color: hsl(0, 0%, 50%);
+    --body-color: hsl(0, 0%, 100%);
+    --container-color: hsl(0, 0%, 95%);
+    --border-color: hsl(0, 0%, 87%);
+    --text-white: #fff;
+
+    /*font and typography*/
+    --body-font: 'Poppins', sans-serif;
+    --heading-font: 'Poppins', sans-serif;
+
+    --big-font-size: 3.5rem;
+    --h1-font-size: 3.125rem;
+    --h2-font-size: 2.5rem;
+    --h3-font-size: 1.875rem;
+    --h5-font-size: 1.655rem;
+    --large-font-size: 1.15rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --tiny-font-size: .75rem;
+
+    /*font weight*/
+
+    --weight-400: 400;
+    --weight-500: 500;
+    --weight-600: 600;
+    --weight-700: 700;
+    --weight-800: 800;
+
+  }
+
+  /* base */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body,
+  input,
+  textarea,
+  
+  body{
+    background-color: var(--body-color);
+    color: var(--text-color);
+  }
+    h1,
+    h2,
+    h3,
+    p,
+    
+    span,
+    h4,
+    h5{
+        font-family: var(--heading-font);
+        font-weight: var(--weight-600);
+        color: var(--title-color);
+    }

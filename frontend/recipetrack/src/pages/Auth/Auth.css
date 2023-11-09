@@ -4,7 +4,7 @@
   justify-content: space-around;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(90deg, #eeeeee 0%, rgb(24, 148, 92) 100%);
+  background: url('../../assets/back-01.png') center/cover no-repeat;
 }
 
 .auth-container {
@@ -64,6 +64,12 @@ button {
   border-radius: 25px;
   cursor: pointer;
   transition: background-color 0.3s;
+}
+
+.button-auth{
+  border-radius: 7px;
+  width: 70%;
+  margin: auto;
 }
 
 button:hover {

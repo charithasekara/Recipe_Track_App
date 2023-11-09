@@ -1,3 +1,4 @@
+// NavBar.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import "./Navbar.css";
@@ -12,24 +13,34 @@ export const NavBar = () => {
     setCookies("access_token", "", { path: '/' });
     window.localStorage.removeItem("userID");
     navigate("/auth");
-  }
+  };
+
+  const refreshPage = () => {
+    window.location.reload();
+  };
+
+  const renderAuthButtons = () => {
+    if (!cookies['access_token']) {
+      return <button><Link to="/auth">Login/Register</Link></button>;
+    } else {
+      return <button onClick={logout}>Logout</button>;
+    }
+  };
 
   return (
     <div className="navbar">
       <div className="logo">
-        <Link to="/">RecipeTrack</Link>
+        <Link to="/">Recipe Tracker</Link>
       </div>
       <div className="links">
         <Link to="/">Home</Link>
         <Link to="/createRecipe">Create Recipe</Link>
         <Link to="/savedRecipe">Saved Recipes</Link>
-        {!cookies['access_token'] ?
-          (<Link to="/auth">Login/Register</Link>) :
-          (<button onClick={logout}>Logout</button>)
-        }
+        <button onClick={refreshPage}>Refresh</button>
+        {renderAuthButtons()}
       </div>
     </div>
-  )
+  );
 }
 
 export default NavBar;
