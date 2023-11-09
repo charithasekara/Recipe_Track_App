@@ -2,8 +2,8 @@
 import './App.css'
 import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home } from "./pages/home"
-import { Auth } from "./pages/auth"
+import { Home } from "./pages/Home/home"
+import { Auth } from "./pages/Auth/auth"
 import { CreateRecipe } from "./pages/createRecipe"
 import { SavedRecipe } from "./pages/savedRecipe"
 import { NavBar } from "./components/NavBar"

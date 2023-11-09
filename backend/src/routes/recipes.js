@@ -47,7 +47,7 @@ recipesRouter.post("/", verifyToken, async (req, res) => {
 });
 
 // Get a recipe by ID
-recipesRouter.get("/:recipeId", async (req, res) => {
+recipesRouter.get("/:recipeId/:userId", async (req, res) => {
   try {
     const result = await RecipesModel.findById(req.params.recipeId);
     res.status(200).json(result);

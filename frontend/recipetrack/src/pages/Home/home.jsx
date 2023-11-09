@@ -1,6 +1,8 @@
+// Home.jsx
 import React, { useEffect, useState } from "react";
-import { useGetUserID } from "../hooks/useGetUserID";
+import { useGetUserID } from "../../hooks/useGetUserID";
 import axios from "axios";
+import "./Home.css";
 
 export const Home = () => {
   const [recipes, setRecipes] = useState([]);
@@ -31,7 +33,7 @@ export const Home = () => {
 
     fetchRecipes();
     fetchSavedRecipes();
-  }, []);
+  }, [userID]);
 
   const saveRecipe = async (recipeID) => {
     try {
@@ -47,15 +49,25 @@ export const Home = () => {
 
   const isRecipeSaved = (id) => savedRecipes.includes(id);
 
+  const userRecipes = recipes.filter((recipe) => recipe.userOwner === userID);
+
   return (
-    <div>
-      <h1>Recipes</h1>
-      <ul>
-        {recipes.map((recipe) => (
-          <li key={recipe._id}>
+    <div className="home-container">
+      <h1>Your Recipes</h1>
+      <ul className="recipe-grid">
+        {userRecipes.map((recipe, index) => (
+          <li
+            key={recipe._id}
+            className={`recipe-card ${
+              index % 3 === 0 ? "first-in-row" : ""
+            }`}
+          >
             <div>
-              <h2>{recipe.name}</h2>
+              <h2 className="recipe-title">{recipe.name}</h2>
               <button
+                className={`recipe-save-button ${
+                  isRecipeSaved(recipe._id) ? "recipe-saved" : ""
+                }`}
                 onClick={() => saveRecipe(recipe._id)}
                 disabled={isRecipeSaved(recipe._id)}
               >
@@ -65,14 +77,19 @@ export const Home = () => {
             <div className="instructions">
               <p>{recipe.instructions}</p>
             </div>
-            <img src={recipe.imageUrl} alt={recipe.name} />
-            <p>Cooking Time: {recipe.cookingTime} minutes</p>
+            <img
+              className="recipe-image"
+              src={recipe.imageUrl}
+              alt={recipe.name}
+            />
+            <p className="recipe-time">
+              Cooking Time: {recipe.cookingTime} minutes
+            </p>
           </li>
         ))}
       </ul>
     </div>
   );
 };
-
 
 export default Home;

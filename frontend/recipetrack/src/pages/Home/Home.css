@@ -1,0 +1,68 @@
+/* Home.css */
+.home-container {
+    text-align: center;
+  }
+  
+  .recipe-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    height: 300px;
+    cursor: pointer;
+  }
+  
+  .recipe-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    flex: 0 0 calc(30% - 20px); /* Adjust the width as needed */
+    margin-bottom: 20px; /* Add margin to create space between rows */
+    height: 450px;
+  }
+  
+  .recipe-card:nth-child(3n) {
+    margin-right: 0; /* Remove right margin for every third card in a row */
+  }
+  
+  .recipe-title {
+    font-size: 1.25rem;
+    margin: 0;
+  }
+  
+  .recipe-save-button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+  
+  .recipe-save-button.recipe-saved {
+    background-color: #27ae60;
+  }
+  
+  .instructions {
+    margin-top: 10px;
+  }
+  
+  .recipe-image {
+    width: 50%;
+    max-width: 100%; /* Adjust the maximum width as needed */
+    margin-top: 10px;
+    height: 50%;
+    object-fit: cover;
+    vertical-align: middle;
+  }
+  
+  .recipe-time {
+    margin-top: 10px;
+  }
+  

@@ -1,0 +1,71 @@
+/* Auth.css */
+.auth {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(90deg, #eeeeee 0%, rgb(24, 148, 92) 100%);
+}
+
+.auth-container {
+  background-color: #fff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 400px;
+  height: 400px;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 30px;
+}
+
+h2 {
+  font-size: 24px;
+  color: #333;
+  margin: 15px 0;
+}
+
+.form-group {
+  padding: 20px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  color: #777;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid #8e2de2;
+  margin-bottom: 15px;
+  outline: none;
+  transition: border-bottom 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  border-bottom: 2px solid #4a00e0;
+}
+
+button {
+  background-color: #209a67;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #2f2f2f;
+}
