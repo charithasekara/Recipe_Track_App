@@ -1,0 +1,46 @@
+.navbar {
+    background-color: #e6e6e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+    .navbar a {
+        color: rgb(162, 78, 39);
+        font-size: 15px;
+        padding: 10px 20px;
+        justify-content: space-between;
+        border-radius: 7px;
+        text-decoration: none;
+        transition: all 0.2s ease-in-out;
+    
+    }
+    .navbar a:hover {
+        background-color: rgba(162, 78, 39, 0.895);
+        color: white;
+    }
+    .navbar a.active {
+        background-color: rgb(162, 78, 39);
+        color: white;
+    }
+    .navbar .logo {
+        font-size: 25px;
+        font-weight: bold;
+    }
+    .navbar .logo.active {
+        background-color: rgb(119, 36, 36);
+        color: white;
+    }
+    button{
+        background-color: rgb(162, 78, 39);
+        color: white;
+        border-radius: 7px;
+        border: none;
+        padding: 10px 20px;
+        font-size: 15px;
+        transition: all 0.2s ease-in-out;
+
+    }
+    
+
+  
