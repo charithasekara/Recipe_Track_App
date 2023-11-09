@@ -1,22 +1,23 @@
-// createRecipe.jsx
-
 import React, { useState } from "react";
 import axios from "axios";
-import { useCookies } from "react-cookie";
+import { useGetUserID } from "../hooks/useGetUserID";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 export const CreateRecipe = () => {
-  const [cookies] = useCookies(["access_token"]);
-  const navigate = useNavigate();
+  const userID = useGetUserID();
+  const [cookies, _] = useCookies(["access_token"]);
   const [recipe, setRecipe] = useState({
     name: "",
-    image: "",
+    description: "",
     ingredients: [],
     instructions: "",
     imageUrl: "",
     cookingTime: 0,
-    userOwner: "",
+    userOwner: userID,
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -38,16 +39,16 @@ export const CreateRecipe = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("/api/recipes", recipe, {
-        headers: { Authorization: `Bearer ${cookies.access_token}` },
-      });
+      await axios.post(
+        "http://localhost:3001/recipes",
+        { ...recipe },
+        {
+          headers: { authorization: cookies.access_token },
+        }
+      );
 
-      if (response.status === 201) {
-        alert("Recipe Created");
-        navigate("/");
-      } else {
-        console.error("Recipe creation failed");
-      }
+      alert("Recipe Created");
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
@@ -65,14 +66,13 @@ export const CreateRecipe = () => {
           value={recipe.name}
           onChange={handleChange}
         />
-        <label htmlFor="image">Image</label>
-        <input
-          type="text"
-          id="image"
-          name="image"
-          value={recipe.image}
+        <label htmlFor="description">Description</label>
+        <textarea
+          id="description"
+          name="description"
+          value={recipe.description}
           onChange={handleChange}
-        />
+        ></textarea>
         <label htmlFor="ingredients">Ingredients</label>
         {recipe.ingredients.map((ingredient, index) => (
           <input
@@ -114,5 +114,6 @@ export const CreateRecipe = () => {
     </div>
   );
 };
+
 
 export default CreateRecipe;

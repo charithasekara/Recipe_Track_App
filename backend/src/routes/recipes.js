@@ -1,110 +1,99 @@
-import express from 'express';
-import { RecipesModel } from '../models/Recipes.js';
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
-import mongoose from 'mongoose';
-import { UserModel } from '../models/Users.js';
-import bcrypt from 'bcrypt'; // Import the bcrypt library for password hashing
+import express from "express";
+import mongoose from "mongoose";
+import { RecipesModel } from "../models/Recipes.js";
+import { UserModel } from "../models/Users.js";
+import { verifyToken } from "./users.js";
 
 const recipesRouter = express.Router();
 
-dotenv.config();
-
-const JWT_SECRET = process.env.JWT_SECRET;
-
-const verifyToken = (req, res, next) => {
-  const token = req.headers.authorization || req.headers['x-access-token'] || req.headers['token'];
-
-  if (!token) {
-    return res.status(403).json({ message: 'No token provided.' });
+recipesRouter.get("/", async (req, res) => {
+  try {
+    const result = await RecipesModel.find({});
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json(err);
   }
+});
 
-  jwt.verify(token, JWT_SECRET, (err, decoded) => {
-    if (err) {
-      return res.status(401).json({ message: 'Failed to authenticate token.' });
-    }
-    req.decoded = decoded;
-    next();
+// Create a new recipe
+recipesRouter.post("/", verifyToken, async (req, res) => {
+  const recipe = new RecipesModel({
+    _id: new mongoose.Types.ObjectId(),
+    name: req.body.name,
+    image: req.body.image,
+    ingredients: req.body.ingredients,
+    instructions: req.body.instructions,
+    imageUrl: req.body.imageUrl,
+    cookingTime: req.body.cookingTime,
+    userOwner: req.body.userOwner,
   });
-};
-
-recipesRouter.post('/auth/register', async (req, res) => {
-  const { username, password } = req.body;
+  console.log(recipe);
 
   try {
-    const existingUser = await UserModel.findOne({ username });
-
-    if (existingUser) {
-      return res.status(400).json({ message: 'User already exists!' });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new UserModel({ username, password: hashedPassword });
-    await newUser.save();
-
-    res.json({ message: 'User Registered Successfully' });
-  } catch (error) {
-    res.status(500).json(error);
-  }
-});
-
-recipesRouter.post('/auth/login', async (req, res) => {
-  const { username, password } = req.body;
-
-  try {
-    const user = await UserModel.findOne({ username });
-
-    if (!user) {
-      return res.status(401).json({ message: 'User does not exist!' });
-    }
-
-    const isValidPassword = await bcrypt.compare(password, user.password);
-    if (!isValidPassword) {
-      return res.status(401).json({ message: 'Invalid Credentials!' });
-    }
-
-    const token = jwt.sign(
-      {
-        id: user._id,
-        username: user.username,
+    const result = await recipe.save();
+    res.status(201).json({
+      createdRecipe: {
+        name: result.name,
+        image: result.image,
+        ingredients: result.ingredients,
+        instructions: result.instructions,
+        _id: result._id,
       },
-      JWT_SECRET
-    );
-    res.json({ token, userID: user._id });
-  } catch (error) {
-    res.status(500).json(error);
+    });
+  } catch (err) {
+    // console.log(err);
+    res.status(500).json(err);
   }
 });
 
-recipesRouter.get('/recipes', async (req, res) => {
+// Get a recipe by ID
+recipesRouter.get("/:recipeId", async (req, res) => {
   try {
-    const recipes = await RecipesModel.find();
-    res.status(200).json(recipes);
-  } catch (error) {
-    res.status(500).json(error);
+    const result = await RecipesModel.findById(req.params.recipeId);
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
-recipesRouter.post('/api/recipes', verifyToken, async (req, res) => {
-  const { name, image, ingredients, instructions, imageUrl, cookingTime } = req.body;
-  const userOwner = req.decoded.id;
-
+// Save a Recipe
+recipesRouter.put("/", async (req, res) => {
+  const recipe = await RecipesModel.findById(req.body.recipeID);
+  const user = await UserModel.findById(req.body.userID);
   try {
-    const recipe = new RecipesModel({
-      name,
-      image,
-      ingredients,
-      instructions,
-      imageUrl,
-      cookingTime,
-      userOwner,
+    user.savedRecipes.push(recipe);
+    await user.save();
+    res.status(201).json({ savedRecipes: user.savedRecipes });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// Get id of saved recipes
+recipesRouter.get("/savedRecipes/ids/:userId", async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.params.userId);
+    res.status(201).json({ savedRecipes: user?.savedRecipes });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+// Get saved recipes
+recipesRouter.get("/savedRecipes/:userId", async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.params.userId);
+    const savedRecipes = await RecipesModel.find({
+      _id: { $in: user.savedRecipes },
     });
 
-    const result = await recipe.save();
-    res.status(201).json(result);
-  } catch (error) {
-    res.status(500).json(error);
+    console.log(savedRecipes);
+    res.status(201).json({ savedRecipes });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
   }
 });
 
-export   { recipesRouter };
+export { recipesRouter };

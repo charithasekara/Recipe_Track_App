@@ -22,8 +22,18 @@ const RecipeSchema = new mongoose.Schema({
         required: true,
     },
     image: {
-        type: String, // Add the "image" field here
+        type: String,
+        inquired: true,
     },
+    cookingTime: {
+        type: Number,
+        required: true,
+      },
+      userOwner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true,
+      },
 });
 
 export const RecipesModel = mongoose.model("recipes", RecipeSchema);
