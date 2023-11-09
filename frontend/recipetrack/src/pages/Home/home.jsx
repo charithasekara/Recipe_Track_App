@@ -12,6 +12,10 @@ export const Home = () => {
   const userID = useGetUserID();
   const navigate = useNavigate();
 
+  const redirectToRecipeDetails = (recipeId) => {
+    navigate(`/recipeDetails/${recipeId}`);
+  };
+
   useEffect(() => {
     const fetchRecipes = async () => {
       try {
@@ -111,12 +115,14 @@ export const Home = () => {
               <p className="recipe-time" >
               Cooking Time: {recipe.cookingTime} minutes
             </p>
-              <div className="buttons">
+            <div className="buttons">
                 <button onClick={() => deleteRecipe(recipe._id)}>Delete</button>
                 <button onClick={() => editRecipe(recipe._id)}>Edit</button>
               </div>
+              <div className="buttons">
+                <button onClick={() => redirectToRecipeDetails(recipe._id)}>Recipe Details</button>
+              </div>
             </div>
-            
           </li>
         ))}
       </ul>

@@ -1,0 +1,57 @@
+/* RecipeDetails.css */
+
+.container {
+    width: 1400px;
+    height: 550px;
+    background-color: rgb(236, 236, 236);
+    padding: 20px;
+    font-size: 16px;
+    font-family: inherit;
+    color: white;
+    display: flex;
+    gap: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin: auto; /* Center the form horizontally */
+    margin-top: 50px; /* Add top margin to center vertically */
+    
+  }
+  
+  .image-container {
+    flex: 1;
+    
+  }
+  
+  .recipe-detail-image {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 480px; /* Set a maximum height for the image */
+    object-fit: cover; /* Cover the entire container, maintaining aspect ratio */
+    margin-top: 15px;
+    margin-left: 15px;
+    border-radius: 7px;
+  }
+  
+  .details-container {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-left: 50px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: rgb(19, 19, 19);
+  }
+  
+  p {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: rgb(19, 19, 19);
+  }
+  
+  /* Add more styles as needed */
+  

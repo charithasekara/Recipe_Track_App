@@ -46,15 +46,6 @@ recipesRouter.post("/", verifyToken, async (req, res) => {
   }
 });
 
-// Get a recipe by ID
-recipesRouter.get("/:recipeId/:userId", async (req, res) => {
-  try {
-    const result = await RecipesModel.findById(req.params.recipeId);
-    res.status(200).json(result);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
 
 // Save a Recipe
 recipesRouter.put("/", async (req, res) => {
@@ -108,5 +99,25 @@ recipesRouter.delete("/:recipeId", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// Get details of a recipe by ID
+recipesRouter.get("/:recipeId", async (req, res) => {
+  const { recipeId } = req.params;
+
+  try {
+    const recipe = await RecipesModel.findById(recipeId);
+
+    if (!recipe) {
+      return res.status(404).json({ error: "Recipe not found" });
+    }
+
+    res.status(200).json(recipe);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+
 
 export { recipesRouter };
