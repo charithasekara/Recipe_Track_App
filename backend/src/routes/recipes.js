@@ -118,6 +118,39 @@ recipesRouter.get("/:recipeId", async (req, res) => {
   }
 });
 
+// Update a Recipe
+recipesRouter.put("/:recipeId", async (req, res) => {
+  const { recipeId } = req.params;
+  const {
+    name,
+    description,
+    ingredients,
+    instructions,
+    imageUrl,
+    cookingTime,
+  } = req.body;
+
+  try {
+    const updatedRecipe = await RecipesModel.findByIdAndUpdate(
+      recipeId,
+      {
+        name,
+        description,
+        ingredients,
+        instructions,
+        imageUrl,
+        cookingTime,
+      },
+      { new: true } // Returns the updated document
+    );
+
+    res.status(200).json(updatedRecipe);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 
 
 export { recipesRouter };

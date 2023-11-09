@@ -12,9 +12,16 @@ export const Home = () => {
   const userID = useGetUserID();
   const navigate = useNavigate();
 
+   // Redirect to the recipeDetails page with the recipeID
   const redirectToRecipeDetails = (recipeId) => {
     navigate(`/recipeDetails/${recipeId}`);
   };
+
+   // Redirect to the edit page with the recipeID
+   const redirectToEditRecipe = (recipeID) => {
+    navigate(`/editRecipe/${recipeID}`);
+  };
+  
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -57,19 +64,17 @@ export const Home = () => {
     const confirmDelete = window.confirm("Are you sure you want to delete this recipe?");
     if (confirmDelete) {
       try {
+        window.alert("Recipe deleted successfully!"); // Display alert before deletion
         await axios.delete(`http://localhost:3001/recipes/${recipeID}`);
-        const updatedRecipes = recipes.filter((recipe) => recipe._id !== recipeID);
-        setRecipes(updatedRecipes);
+        window.location.reload(); // Refresh the page
       } catch (err) {
         console.log(err);
       }
     }
   };
+  
 
-  const editRecipe = (recipeID) => {
-    // Redirect to the edit page with the recipeID
-    navigate(`/edit/${recipeID}`);
-  };
+
 
   const isRecipeSaved = (id) => savedRecipes.includes(id);
 
@@ -117,7 +122,7 @@ export const Home = () => {
             </p>
             <div className="buttons">
                 <button onClick={() => deleteRecipe(recipe._id)}>Delete</button>
-                <button onClick={() => editRecipe(recipe._id)}>Edit</button>
+                <button onClick={() => redirectToEditRecipe(recipe._id)}>Edit</button>
               </div>
               <div className="buttons">
                 <button onClick={() => redirectToRecipeDetails(recipe._id)}>Recipe Details</button>
