@@ -96,4 +96,17 @@ recipesRouter.get("/savedRecipes/:userId", async (req, res) => {
   }
 });
 
+// Delete a Recipe
+recipesRouter.delete("/:recipeId", async (req, res) => {
+  const recipeID = req.params.recipeId;
+  
+  try {
+    const result = await RecipesModel.findByIdAndDelete(recipeID);
+    res.status(200).json(result);
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 export { recipesRouter };

@@ -1,68 +1,100 @@
 /* Home.css */
 .home-container {
-    text-align: center;
-  }
+  text-align: center;
+  margin: 0 50px;
+}
+
+.recipe-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.recipe-card {
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 0 0 calc(20% - 10px); /* Adjust the width as needed */
+  margin-bottom: 20px; /* Add margin to create space between rows */
+  height: 450px;
+}
+
+.recipe-card:nth-child(3n) {
+  margin-right: 0; /* Remove right margin for every third card in a row */
+}
+
+.recipe-details {
+  display: flex;
+  flex-direction: column;
   
-  .recipe-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    gap: 20px;
-    list-style: none;
-    padding: 0;
-    height: 300px;
-    cursor: pointer;
-  }
-  
-  .recipe-card {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    flex: 0 0 calc(30% - 20px); /* Adjust the width as needed */
-    margin-bottom: 20px; /* Add margin to create space between rows */
-    height: 450px;
-  }
-  
-  .recipe-card:nth-child(3n) {
-    margin-right: 0; /* Remove right margin for every third card in a row */
-  }
-  
-  .recipe-title {
-    font-size: 1.25rem;
-    margin: 0;
-  }
-  
-  .recipe-save-button {
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    font-size: 1rem;
-  }
-  
-  .recipe-save-button.recipe-saved {
-    background-color: #27ae60;
-  }
-  
-  .instructions {
-    margin-top: 10px;
-  }
-  
-  .recipe-image {
-    width: 50%;
-    max-width: 100%; /* Adjust the maximum width as needed */
-    margin-top: 10px;
-    height: 50%;
-    object-fit: cover;
-    vertical-align: middle;
-  }
-  
-  .recipe-time {
-    margin-top: 10px;
-  }
-  
+}
+
+.name-and-save {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recipe-title {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.recipe-save-button {
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+.recipe-save-button.recipe-saved {
+  background-color: #27ae60;
+}
+
+.instructions {
+  margin-top: 10px;
+  margin-bottom: 5px; /* Reduce the bottom margin */
+}
+
+.recipe-image {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: 200px; /* Set a maximum height for the image */
+  object-fit: cover; /* Cover the entire container, maintaining aspect ratio */
+  margin-top: 10px;
+  border-radius: 7px;
+}
+
+
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 150px;
+}
+
+.buttons button {
+  background-color: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.buttons button.edit-button {
+  background-color: #3498db;
+}

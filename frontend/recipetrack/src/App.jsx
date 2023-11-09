@@ -4,9 +4,10 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home/home"
 import { Auth } from "./pages/Auth/auth"
-import { CreateRecipe } from "./pages/createRecipe"
+import { CreateRecipe } from "./pages/Create_Recipe/createRecipe"
 import { SavedRecipe } from "./pages/savedRecipe"
 import { NavBar } from "./components/NavBar"
+
 function App() {
 
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/auth" element={<Auth />} />
           <Route path="/createRecipe" element={<CreateRecipe />} />
           <Route path="/savedRecipe" element={<SavedRecipe/>} />
+         
         </Routes>
         </Router>
       </div>

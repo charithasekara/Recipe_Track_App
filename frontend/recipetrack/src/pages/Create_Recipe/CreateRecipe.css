@@ -1,0 +1,106 @@
+.create-recipe {
+    width: 1400px;
+    background: linear-gradient(#212121, #212121) padding-box,
+                linear-gradient(145deg, transparent 35%, #e81cff, #40c9ff) border-box;
+    border: 2px solid transparent;
+    padding: 20px;
+    font-size: 16px;
+    font-family: inherit;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin: auto; /* Center the form horizontally */
+    margin-top: 50px; /* Add top margin to center vertically */
+  }
+  
+  .create-recipe h2 {
+    text-align: left; /* Align the title to the left */
+    color: #ccc;
+    margin: auto;
+  }
+  
+  .create-recipe form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Increase the gap between form elements */
+    margin: 50px;
+  }
+  
+  .create-recipe label {
+    display: block;
+    color: #fff;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
+    
+  }
+  
+  .create-recipe input,
+  .create-recipe textarea,
+  .create-recipe button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 5px;
+    color: #333;
+    font-family: inherit;
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    transition: border-color 0.3s ease-in-out;
+  }
+  
+  .create-recipe input::placeholder,
+  .create-recipe textarea::placeholder {
+    opacity: 0.7;
+    
+  }
+  
+  .create-recipe input:focus,
+  .create-recipe textarea:focus {
+    outline: none;
+    border-color: #e81cff;
+  }
+  
+  .create-recipe .ingredients-group,
+  .create-recipe .instructions-group,
+  .create-recipe .image-url-group,
+  .create-recipe .cooking-time-group {
+    display: flex;
+    gap: 10px;
+    margin: auto;
+    
+  }
+  
+  .create-recipe .ingredients-input,
+  .create-recipe .instructions-input,
+  .create-recipe .image-url-input,
+  .create-recipe .cooking-time-input {
+    flex: 1;
+    margin: auto;
+  }
+  
+
+  .create-recipe form button {
+    background: #188c60;
+    cursor: pointer;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease-in-out;
+    width: 50%;
+    color: #f5f5f5;
+    margin: auto;
+  }
+  
+  .create-recipe form button:hover {
+    background-color: #40c9ff;
+  }
+  
+  
+  
+
+  
